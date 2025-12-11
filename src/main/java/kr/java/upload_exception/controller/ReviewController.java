@@ -1,6 +1,8 @@
 package kr.java.upload_exception.controller;
 
 import jakarta.validation.Valid;
+import kr.java.upload_exception.exception.FileStorageException;
+import kr.java.upload_exception.exception.InvalidFileTypeException;
 import kr.java.upload_exception.model.entity.Review;
 import kr.java.upload_exception.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -78,12 +80,24 @@ public class ReviewController {
             return "review/form"; // 검증 미통과 시 폼 페이지로 포워드
         }
 
-        reviewService.create(review, imageFile);
+        try {
+            reviewService.create(review, imageFile);
+            redirectAttributes.addFlashAttribute("message", "리뷰가 등록되었습니다.");
+            return "redirect:/reviews";
 
-        // Flash Attribute: 리다이렉트 후 한 번만 사용되는 데이터
-        redirectAttributes.addFlashAttribute("message", "리뷰가 등록되었습니다.");
+        } catch (InvalidFileTypeException e) {
+            // 파일 타입 오류: 사용자 입력 데이터 유지하며 폼으로 복귀
+            model.addAttribute("review", review);
+            model.addAttribute("errorMessage", e.getMessage());
+            return "review/form";
 
-        return "redirect:/reviews";
+        } catch (FileStorageException e) {
+            // 파일 저장 오류: 마찬가지로 폼 복귀
+            model.addAttribute("review", review);
+            model.addAttribute("errorMessage", "파일 업로드 중 오류가 발생했습니다.");
+            return "review/form";
+        }
+        // 그 외 예외는 전역 핸들러(@ControllerAdvice)로 위임됨
     }
 
 
@@ -131,5 +145,17 @@ public class ReviewController {
         redirectAttributes.addFlashAttribute("message", "리뷰가 삭제되었습니다.");
 
         return "redirect:/reviews";
+    }
+
+    /**
+     * 컨트롤러 단위 예외 처리
+     * 이 컨트롤러 내에서 발생하는 IllegalArgumentException만 처리
+     *
+     * @ExceptionHandler: 특정 예외 타입을 잡아서 처리하는 메서드 지정
+     */
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String handleNotFound(IllegalArgumentException e, Model model) {
+        model.addAttribute("errorMessage", e.getMessage());
+        return "error/404";
     }
 }
