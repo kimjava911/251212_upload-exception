@@ -1,5 +1,6 @@
 spring:
   datasource:
+    # https://console.aiven.io/
     url: jdbc:mysql://mysql-{}.{}.aivencloud.com:{}/defaultdb?ssl-mode=REQUIRED
     username: avnadmin
     password: AVNS_{}
