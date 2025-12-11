@@ -11,6 +11,11 @@
     <jsp:param name="pageName" value="${pageName}"/>
 </jsp:include>
 
+<%-- 수정 완료 메시지 --%>
+<c:if test="${not empty message}">
+    <p style="color: green; font-weight: bold;">${message}</p>
+</c:if>
+
 <h2>${review.title}</h2>
 
 <%-- 평점 표시 --%>
@@ -41,8 +46,15 @@
 <hr>
 
 <p>
-<%-- TODO : 수정 & 삭제 --%>
-<a href="<c:url value='/reviews'/>">목록으로</a>
+    <a href="<c:url value='/reviews/${review.id}/edit'/>">수정</a>
+    <%-- 삭제는 POST로 처리 (실수로 링크 클릭 방지) --%>
+    <form action="<c:url value='/reviews/${review.id}/delete'/>"
+          method="post" style="display: inline;"
+          onsubmit="return confirm('정말 삭제하시겠습니까?');">
+        <button type="submit">삭제</button>
+    </form>
+    <a href="<c:url value='/reviews'/>">목록으로</a>
 </p>
+
 </body>
 </html>

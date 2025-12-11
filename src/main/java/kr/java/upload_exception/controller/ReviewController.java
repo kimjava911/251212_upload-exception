@@ -85,4 +85,51 @@ public class ReviewController {
 
         return "redirect:/reviews";
     }
+
+
+    /**
+     * 리뷰 수정 폼 페이지
+     * GET /reviews/{id}/edit
+     */
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model) {
+        Review review = reviewService.findById(id);
+        model.addAttribute("review", review);
+        model.addAttribute("pageName", "리뷰 수정");
+        return "review/edit";
+    }
+
+    /**
+     * 리뷰 수정 처리
+     * POST /reviews/{id}/edit
+     */
+    @PostMapping("/{id}/edit")
+    public String update(@PathVariable Long id,
+                         @ModelAttribute Review review,
+                         BindingResult bindingResult,
+                         @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+                         Model model,
+                         RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("pageName", "리뷰 수정");
+            model.addAttribute("bindingResult", bindingResult);
+            return "review/edit"; // 검증 미통과 시 수정 페이지로 포워드
+        }
+        reviewService.update(id, review, imageFile);
+        redirectAttributes.addFlashAttribute("message", "리뷰가 수정되었습니다.");
+
+        return "redirect:/reviews/" + id;
+    }
+
+    /**
+     * 리뷰 삭제 처리
+     * POST /reviews/{id}/delete
+     */
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        reviewService.delete(id);
+        redirectAttributes.addFlashAttribute("message", "리뷰가 삭제되었습니다.");
+
+        return "redirect:/reviews";
+    }
 }
