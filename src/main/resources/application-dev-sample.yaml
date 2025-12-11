@@ -16,3 +16,24 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  # https://supabase.com/
+  cloud:
+    aws:
+      region:
+        static: ap-{}
+      credentials:
+        access-key: {}
+        secret-key: {}
+      s3:
+        endpoint: https://{}.storage.supabase.co/storage/v1/s3
+        path-style-access-enabled: true
+
+aws:
+  s3:
+    bucket: {}
+
+file:
+  storage:
+    #   type: local
+    type: s3
