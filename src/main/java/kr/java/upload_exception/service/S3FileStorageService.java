@@ -48,8 +48,8 @@ public class S3FileStorageService implements FileStorageService {
         validateFile(file);
 
         String extension = extractExtension(file.getOriginalFilename());
-        // S3 키: 폴더구조/UUID.확장자
-        String key = "reviews/" + UUID.randomUUID() + extension;
+        // S3 키: UUID.확장자
+        String key = UUID.randomUUID() + extension;
 
         try {
             // S3에 업로드할 요청 생성

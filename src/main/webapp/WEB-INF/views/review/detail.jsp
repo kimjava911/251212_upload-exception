@@ -55,7 +55,7 @@
     <form action="<c:url value='/reviews/${review.id}/delete'/>"
           method="post" style="display: inline;"
           onsubmit="return confirm('정말 삭제하시겠습니까?');">
-        <button type="submit">삭제</button>
+        <button>삭제</button>
     </form>
     <a href="<c:url value='/reviews'/>">목록으로</a>
 </p>
