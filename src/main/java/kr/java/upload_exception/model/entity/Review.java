@@ -2,6 +2,7 @@ package kr.java.upload_exception.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class Review extends BaseEntity {
 
     // 평점 (1~5 사이 정수)
     @Min(value = 1, message = "평점은 최소 1점 이상입니다.")
-    @Min(value = 5, message = "평점은 최대 5점 이하입니다.")
+    @Max(value = 5, message = "평점은 최대 5점 이하입니다.")
     @Column(nullable = false)
     private Integer rating;
 
