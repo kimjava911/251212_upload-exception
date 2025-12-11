@@ -4,3 +4,6 @@
   - controller
   - view (layout - include)
   - profile (dev, prod)
+- step01 : file upload setting (local)
+  - FileStorageService (uploads)
+  - WebConfig (resource handler)

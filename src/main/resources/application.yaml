@@ -10,3 +10,20 @@ spring:
       suffix: .jsp
   profiles:
     active: dev
+
+  # 멀티파트(파일 업로드) 설정
+  servlet:
+    multipart:
+      # 파일 업로드 기능 활성화
+      enabled: true
+      # 개별 파일 최대 크기
+      max-file-size: 10MB
+      # 전체 요청 최대 크기
+      max-request-size: 30MB
+      # 이 크기 이하면 메모리에서 처리
+      file-size-threshold: 2KB
+
+# 파일 업로드 경로 (커스텀 설정)
+file:
+  # 프로젝트 루트 기준 상대 경로 (src/)
+  upload-dir: uploads
