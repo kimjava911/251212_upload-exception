@@ -4,8 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter
+@NoArgsConstructor
 public class Review extends BaseEntity {
     // 리뷰 제목 (최대 100자, 필수)
     @NotBlank(message = "리뷰 제목은 필수입니다.")
