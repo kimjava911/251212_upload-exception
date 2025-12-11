@@ -36,13 +36,13 @@ public class S3FileController {
      * @param filename 조회할 파일의 이름
      * @return 파일 데이터 스트림을 포함하는 ResponseEntity
      */
-    @GetMapping("/{folder}/{filename}")
+    @GetMapping("/{filename}")
     // org.springframework.core.io.Resource
-    public ResponseEntity<Resource> downloadFile(@PathVariable String folder, @PathVariable String filename) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
         // GetObjectRequest를 사용하여 S3에서 객체를 가져옵니다.
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                 .bucket(bucket)
-                .key(folder + "/" + filename)
+                .key(filename)
                 .build();
 
         try {
