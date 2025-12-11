@@ -15,10 +15,14 @@
 
 <%-- 평점 표시 --%>
 <p>
-    평점:
-    <c:forEach begin="1" end="${review.rating}">★</c:forEach>
-    <c:forEach begin="${review.rating + 1}" end="5">☆</c:forEach>
-    (${review.rating}/5)
+    <div class="d-flex justify-content-start">
+        <div class="pe-1">평점:</div>
+        <div class="d-flex justify-content-start">
+            <c:forEach begin="1" end="${review.rating}"><span>★</span></c:forEach>
+            <c:forEach begin="${review.rating + 1}" end="5"><span>☆</span></c:forEach>
+        </div>
+        <div class="ps-1">(${review.rating}/5)</div>
+    </div>
 </p>
 
 <%-- 이미지 표시 --%>
