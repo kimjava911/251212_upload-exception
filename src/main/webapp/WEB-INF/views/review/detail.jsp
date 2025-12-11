@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="../common/head.jsp">
-    <jsp:param name="pageName" value="${pageName} + ' - ' + ${review.title}"/>
+    <jsp:param name="pageName" value="${pageName} - ${review.title}"/>
 </jsp:include>
 <body>
 <jsp:include page="../common/nav.jsp">
