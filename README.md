@@ -14,3 +14,12 @@
 - step03 : file upload page (UD) (local)
   - ReviewController
   - View (UPDATE/DELETE)
+- step04 : exception handling
+  - white label
+  - try/catch
+  - ExceptionHandler
+  - @ControllerAdvice
+- step05 : S3
+  - Supabase Object Storage
+  - FileStorageService (Local, S3)
+  - S3FileController
