@@ -7,3 +7,7 @@
 - step01 : file upload setting (local)
   - FileStorageService (uploads)
   - WebConfig (resource handler)
+- step02 : file upload page (CR) (local)
+  - ReviewController
+  - View (CREATE/READ-ONE&ALL)
+  - http://localhost:8080/reviews
