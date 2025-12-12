@@ -25,5 +25,5 @@ spring:
 
 # 파일 업로드 경로 (커스텀 설정)
 file:
-  # 프로젝트 루트 기준 상대 경로 (src/)
+  # 프로젝트 루트 기준 상대 경로
   upload-dir: uploads
