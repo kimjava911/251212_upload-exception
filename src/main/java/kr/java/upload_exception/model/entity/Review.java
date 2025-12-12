@@ -24,7 +24,7 @@ public class Review extends BaseEntity {
 
     // 평점 (1~5 사이 정수)
     @Min(value = 1, message = "평점은 최소 1점 이상입니다.")
-    @Min(value = 5, message = "평점은 최대 5점 이하입니다.")
+    @Max(value = 5, message = "평점은 최대 5점 이하입니다.")
     @Column(nullable = false)
     private Integer rating;
 
